@@ -6,19 +6,17 @@ import java.util.Scanner;
 
 public class FindData {
     private final Scanner scanner;
-    private final CSVReader csvReader;
-    List<String> requestedInfo;
-    List<String> foundLines;
+    private final List<String> requestedInfo;
+    private final List<String> foundLines;
 
     public FindData() {
         scanner = new Scanner(System.in);
-        csvReader = new CSVReader();
+        CSVReader csvReader = new CSVReader();
         foundLines = new ArrayList<>();
+        requestedInfo = csvReader.filterCSV();
     }
 
     private String usersFindingCriteria() {
-        csvReader.filterCSV();
-
         System.out.println("Please select the criteria by which you will search for information.");
         System.out.println("----------------------------------------------------");
         System.out.println("To search by person's surname, enter '1'");
@@ -42,12 +40,10 @@ public class FindData {
     }
 
     private void findInfoBySurname() {
-        requestedInfo = csvReader.filterCSV();
         filterCriteria(requestedInfo, "surname", 1);
     }
 
     private void findInfoByField() {
-        requestedInfo = csvReader.filterCSV();
         filterCriteria(requestedInfo, "field of activity", 6);
     }
 
